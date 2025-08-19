@@ -1,7 +1,12 @@
+using UniversityMIS.database;
+using Microsoft.EntityFrameworkCore; // Add this using directive
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("PostgreSQLConString")));
 
 var app = builder.Build();
 
