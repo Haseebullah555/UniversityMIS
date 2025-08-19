@@ -32,34 +32,31 @@ namespace UniversityMIS.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Create(Marks Mark)
+        public IActionResult Create(Marks Marks)
         {
             if (ModelState.IsValid)
             {
-                _context.Marks.Add(Mark);
+                _context.Marks.Add(Marks);
                 _context.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Semesters = new SelectList(_context.Semesters.ToList(), "Id", "SemesterName");
-            ViewBag.Subjects = new SelectList(_context.Subjects.ToList(), "Id", "SubjectName");
-            ViewBag.Students = new SelectList(_context.Students.ToList(), "Id", "FirstName");
-            return View(Mark);
+            return View(Marks);
         }
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            var Mark = _context.Marks.Find(id);
-            ViewBag.Semester = new SelectList(_context.Semesters.ToList(), "Id", "SemesterName");
+            var Marks = _context.Marks.Find(id);
+            ViewBag.Semesters = new SelectList(_context.Semesters.ToList(), "Id", "SemesterName");
             ViewBag.Subjects = new SelectList(_context.Subjects.ToList(), "Id", "SubjectName");
             ViewBag.Students = new SelectList(_context.Students.ToList(), "Id", "FirstName");
-            return View(Mark);
+            return View(Marks);
         }
         [HttpPost]
-        public IActionResult Edit(Marks Mark)
+        public IActionResult Edit(Marks Marks)
         {
             if (ModelState.IsValid)
             {
-                _context.Marks.Update(Mark);
+                _context.Marks.Update(Marks);
                 _context.SaveChanges();
                 return RedirectToAction("Index");
             }
