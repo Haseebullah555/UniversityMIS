@@ -1,0 +1,29 @@
+@model UniversityMIS.Models.Semester
+
+@{
+    ViewData["Title"] = "Create Semester";
+}
+
+<div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0">Create New Semester</h5>
+    </div>
+    <div class="card-body">
+        <form asp-action="Create" method="post">
+            <div class="mb-3">
+                <label asp-for="SemesterName" class="form-label"></label>
+                <input asp-for="SemesterName" class="form-control" placeholder="Enter semester name" />
+                <span asp-validation-for="SemesterName" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-success">
+                <i class="bi bi-check-lg"></i> Save
+            </button>
+            <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
