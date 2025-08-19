@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("UniversityMIS")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8fe72331b0f3a50e0678460a6c92a2899cba916b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+07b142c5f1f565754b8560987f3ba6084b21af4a")]
 [assembly: System.Reflection.AssemblyProductAttribute("UniversityMIS")]
 [assembly: System.Reflection.AssemblyTitleAttribute("UniversityMIS")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
