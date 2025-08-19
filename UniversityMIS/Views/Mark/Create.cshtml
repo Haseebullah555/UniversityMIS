@@ -1,0 +1,40 @@
+@model Marks
+
+@{
+    ViewData["Title"] = "Create Mark";
+}
+
+<div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0">Create New Mark</h5>
+    </div>
+    <div class="card-body">
+        <form asp-action="Create" method="post">
+            <div class="mb-3">
+                <label asp-for="StudentId" class="form-label"></label>
+                <select asp-for="StudentId" name="StudentId" class="form-select" asp-items="@ViewBag.Students"></select>
+                <span asp-validation-for="StudentId" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="SemesterId" class="form-label"></label>
+                <select asp-for="SemesterId" name="SemesterId" class="form-select" asp-items="@ViewBag.Semesters"></select>
+                <span asp-validation-for="SemesterId" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="SubjectId" class="form-label"></label>
+                <select asp-for="SubjectId" name="SubjectId" class="form-select" asp-items="@ViewBag.Subjects"></select>
+                <span asp-validation-for="SubjectId" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Mark" class="form-label"></label>
+                <input asp-for="Mark" name="Mark" class="form-control" placeholder="Enter Mark name" />
+                <span asp-validation-for="Mark" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-success">
+                <i class="bi bi-check-lg"></i> Save
+            </button>
+            <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
