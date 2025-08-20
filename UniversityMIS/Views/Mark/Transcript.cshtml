@@ -1,0 +1,61 @@
+﻿@model UniversityMIS.ViewModel.TranscriptViewModel
+
+<form asp-action="Transcript" method="post" id="Transcript">
+    <div class="form-group">
+        <label>Select Student</label>
+        <select asp-for="StudentId" asp-items="Model.Students" class="form-control"></select>
+    </div>
+
+    <div class="form-group col-md-4">
+        <label asp-for="SemesterIds" class="form-label required"></label>
+        <select asp-for="SemesterIds" asp-items="Model.Semesters" required
+                class="form-select" data-control="select2" data-placeholder="Select an option"
+                data-allow-clear="true">
+            <option></option>
+        </select>
+        <span asp-validation-for="SemesterIds" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Load Transcript</button>
+</form>
+
+@if (Model.SemesterTranscripts != null && Model.SemesterTranscripts.Any())
+{
+    <h3>Transcript for @Model.StudentName</h3>
+
+    @foreach (var semester in Model.SemesterTranscripts)
+    {
+        <h4>@semester.SemesterName</h4>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Subject</th>
+                    <th>Mark</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var subj in semester.Subjects)
+                {
+                    <tr>
+                        <td>@subj.SubjectName</td>
+                        <td>@subj.Mark</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+}
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            console.log("Select2 initialized");
+
+            // Target your select (it has asp-for="SemesterIds")
+            $('#SemesterIds').select2({
+                placeholder: "Select semesters",
+                allowClear: true,
+                width: '100%' // makes it fit like Bootstrap inputs
+            });
+        });
+    </script>
+}

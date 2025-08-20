@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("UniversityMIS")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+41de7fd7fd8d819f250d4ee2bc7bd504a80ed702")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cd16898171bdb82cc88a7c5a9ed36e88f7c4324f")]
 [assembly: System.Reflection.AssemblyProductAttribute("UniversityMIS")]
 [assembly: System.Reflection.AssemblyTitleAttribute("UniversityMIS")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

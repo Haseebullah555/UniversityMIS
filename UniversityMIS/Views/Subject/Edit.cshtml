@@ -12,13 +12,13 @@
         <form asp-action="Edit" method="post">
             <input type="hidden" asp-for="Id">
             <div class="mb-3">
-                <label asp-for="SubjectName" class="form-label"></label>
-                <input asp-for="SubjectName" class="form-control" placeholder="Enter Subject name" />
+                <label asp-for="SubjectName" class="required form-label"></label>
+                <input asp-for="SubjectName" class="form-control" placeholder="Enter Subject name" required />
                 <span asp-validation-for="SubjectName" class="text-danger"></span>
             </div>
             <div class="mb-3">
-                <label asp-for="SemesterId" class="form-label"></label>
-                <select asp-for="SemesterId" class="form-select" asp-items="@ViewBag.Semester"></select>
+                <label asp-for="SemesterId" class="required form-label"></label>
+                <select asp-for="SemesterId" class="form-select" asp-items="@ViewBag.Semester" required></select>
                 <span asp-validation-for="SemesterId" class="text-danger"></span>
             </div>
 

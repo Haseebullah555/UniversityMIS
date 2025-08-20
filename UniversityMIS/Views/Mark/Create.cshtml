@@ -11,23 +11,29 @@
     <div class="card-body">
         <form asp-action="Create" method="post">
             <div class="mb-3">
-                <label asp-for="StudentId" class="form-label"></label>
-                <select asp-for="StudentId" name="StudentId" class="form-select" asp-items="@ViewBag.Students"></select>
+                <label asp-for="StudentId" class="required form-label"></label>
+                <select asp-for="StudentId" name="StudentId" class="form-select" asp-items="@ViewBag.Students" required>
+                    <option value="">Select an item</option>
+                </select>
                 <span asp-validation-for="StudentId" class="text-danger"></span>
             </div>
             <div class="mb-3">
-                <label asp-for="SemesterId" class="form-label"></label>
-                <select asp-for="SemesterId" name="SemesterId" class="form-select" asp-items="@ViewBag.Semesters"></select>
+                <label asp-for="SemesterId" class="required form-label"></label>
+                <select asp-for="SemesterId" name="SemesterId" class="form-select" asp-items="@ViewBag.Semesters" required>
+                    <option value="">Select an item</option>
+                </select>
                 <span asp-validation-for="SemesterId" class="text-danger"></span>
             </div>
             <div class="mb-3">
-                <label asp-for="SubjectId" class="form-label"></label>
-                <select asp-for="SubjectId" name="SubjectId" class="form-select" asp-items="@ViewBag.Subjects"></select>
+                <label asp-for="SubjectId" class="required form-label"></label>
+                <select asp-for="SubjectId" name="SubjectId" id="SubjectId" class="form-select" required>
+                    <option value="">Select an item</option>
+                </select>
                 <span asp-validation-for="SubjectId" class="text-danger"></span>
             </div>
             <div class="mb-3">
-                <label asp-for="Mark" class="form-label"></label>
-                <input asp-for="Mark" name="Mark" class="form-control" placeholder="Enter Mark name" />
+                <label asp-for="Mark" class="required form-label"></label>
+                <input asp-for="Mark" name="Mark" class="form-control" placeholder="Enter Mark name" required />
                 <span asp-validation-for="Mark" class="text-danger"></span>
             </div>
 
@@ -38,3 +44,33 @@
         </form>
     </div>
 </div>
+@section Scripts{
+    <script>
+        $("#SemesterId").change(function () {
+
+            fillDropdownByParentId(this, "#SubjectId", "/Subject/GetSubjectsBySemesterId");
+        });
+
+        function fillDropdownByParentId(parentId, childId, url) {
+            $(childId).find("option:gt(0)").remove();
+            let parent_id = $(parentId).find('option:selected').val();
+
+            $.ajax({
+                type: "GET",
+                url: url,
+                data: { id: parent_id },
+                success: function (data) {
+                    console.log(data);
+
+                    var s = "";
+                    for (var i = 0; i < data.data.length; i++) {
+                        s += '<option value="' + data.data[i].id + '">'
+                            + data.data[i].subjectName + '</option>';
+                    }
+                    $(childId).append(s);
+                }
+            });
+        }
+
+    </script>
+}

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using UniversityMIS.database;
 using UniversityMIS.Models;
+using UniversityMIS.ViewModel;
 
 namespace UniversityMIS.Controllers
 {
@@ -76,6 +77,70 @@ namespace UniversityMIS.Controllers
             _context.SaveChanges();
 
             return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
+        public IActionResult Transcript()
+        {
+            var model = new TranscriptViewModel
+            {
+                Students = _context.Students
+             .Select(s => new SelectListItem
+             {
+                 Value = s.Id.ToString(),
+                 Text = s.FirstName + " " + s.LastName
+             }).ToList(),
+
+                Semesters = _context.Semesters
+             .Select(s => new SelectListItem
+             {
+                 Value = s.Id.ToString(),
+                 Text = s.SemesterName
+             }).ToList()
+            };
+
+            return View(model);
+        }
+        [HttpPost]
+        public IActionResult Transcript(TranscriptViewModel model)
+        {
+            var student = _context.Students.Find(model.StudentId);
+
+            if (student == null || model.SemesterIds == null || !model.SemesterIds.Any())
+            {
+                ModelState.AddModelError("", "Please select a student and at least one semester.");
+                return View(model);
+            }
+
+            var semestersData = _context.Semesters
+                .Where(s => model.SemesterIds.Contains(s.Id))
+                .Select(s => new SemesterTranscriptDto
+                {
+                    SemesterName = s.SemesterName,
+                    Subjects = _context.Marks
+                        .Where(m => m.StudentId == model.StudentId && m.SemesterId == s.Id)
+                        .Select(m => new SubjectMarkDto
+                        {
+                            SubjectName = m.Subject.SubjectName,
+                            Mark = m.Mark
+                        })
+                        .ToList()
+                })
+                .ToList();
+
+            model.StudentName = $"{student.FirstName} {student.LastName}";
+            model.SemesterTranscripts = semestersData;
+
+            // repopulate dropdowns
+            model.Students = _context.Students
+                .Select(s => new SelectListItem { Value = s.Id.ToString(), Text = s.FirstName + " " + s.LastName })
+                .ToList();
+
+            model.Semesters = _context.Semesters
+                .Select(s => new SelectListItem { Value = s.Id.ToString(), Text = s.SemesterName })
+                .ToList();
+
+            return View(model);
         }
 
     }

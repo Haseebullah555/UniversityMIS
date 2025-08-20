@@ -11,8 +11,8 @@
     <div class="card-body">
         <form asp-action="Create" method="post">
             <div class="mb-3">
-                <label asp-for="SemesterName" class="form-label"></label>
-                <input asp-for="SemesterName" class="form-control" placeholder="Enter semester name" />
+                <label asp-for="SemesterName" class="required form-label"></label>
+                <input asp-for="SemesterName" class="form-control" placeholder="Enter semester name" required />
                 <span asp-validation-for="SemesterName" class="text-danger"></span>
             </div>
 

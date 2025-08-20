@@ -12,23 +12,23 @@
         <form asp-action="Edit" method="post">
             <input type="hidden" asp-for="Id">
             <div class="mb-3">
-                <label asp-for="FirstName" class="form-label"></label>
-                <input asp-for="FirstName" class="form-control" placeholder="Enter Student name" />
+                <label asp-for="FirstName" class="required form-label"></label>
+                <input asp-for="FirstName" class="form-control" placeholder="Enter Student name"  required/>
                 <span asp-validation-for="FirstName" class="text-danger"></span>
             </div>
             <div class="mb-3">
-                <label asp-for="LastName" class="form-label"></label>
-                <input asp-for="LastName" class="form-control" placeholder="Enter Student name" />
+                <label asp-for="LastName" class="required form-label"></label>
+                <input asp-for="LastName" class="form-control" placeholder="Enter Student name" required/>
                 <span asp-validation-for="LastName" class="text-danger"></span>
             </div>
             <div class="mb-3">
-                <label asp-for="Age" class="form-label"></label>
-                <input asp-for="Age" class="form-control" placeholder="Enter Student name" />
+                <label asp-for="Age" class="required form-label"></label>
+                <input asp-for="Age" class="form-control" placeholder="Enter Student name" required/>
                 <span asp-validation-for="Age" class="text-danger"></span>
             </div>
             <div class="mb-3">
-                <label asp-for="Phone" class="form-label"></label>
-                <input asp-for="Phone" class="form-control" placeholder="Enter Student name" />
+                <label asp-for="Phone" class="required form-label"></label>
+                <input asp-for="Phone" class="form-control" placeholder="Enter Student name" required/>
                 <span asp-validation-for="Phone" class="text-danger"></span>
             </div>
 

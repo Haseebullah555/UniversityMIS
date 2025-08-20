@@ -13,25 +13,25 @@
             <input type="hidden" asp-for="Id">
             <div class="row">
                 <div class="mb-3">
-                <label asp-for="StudentId" class="form-label"></label>
-                <select asp-for="StudentId" class="form-select" asp-items="@ViewBag.Students"></select>
+                    <label asp-for="StudentId" class="required form-label"></label>
+                    <select asp-for="StudentId" class="form-select" asp-items="@ViewBag.Students" required></select>
                 <span asp-validation-for="StudentId" class="text-danger"></span>
             </div>
             <div class="mb-3">
-                <label asp-for="SemesterId" class="form-label"></label>
-                <select asp-for="SemesterId" class="form-select" asp-items="@ViewBag.Semesters"></select>
+                    <label asp-for="SemesterId" class="required form-label"></label>
+                    <select asp-for="SemesterId" class="form-select" asp-items="@ViewBag.Semesters" required></select>
                 <span asp-validation-for="SemesterId" class="text-danger"></span>
             </div>
             </div>
             <div class="row">
                 <div class="mb-3">
-                <label asp-for="SubjectId" class="form-label"></label>
-                <select asp-for="SubjectId" class="form-select" asp-items="@ViewBag.Subjects"></select>
+                    <label asp-for="SubjectId" class="required form-label"></label>
+                    <select asp-for="SubjectId" class="form-select" asp-items="@ViewBag.Subjects" required></select>
                 <span asp-validation-for="SubjectId" class="text-danger"></span>
             </div>
             <div class="mb-3">
-                <label asp-for="Mark" class="form-label"></label>
-                <input asp-for="Mark" class="form-control" placeholder="Enter Marks" />
+                    <label asp-for="Mark" class="required form-label"></label>
+                    <input asp-for="Mark" class="form-control" placeholder="Enter Marks" required />
                 <span asp-validation-for="Mark" class="text-danger"></span>
             </div>
             </div>

@@ -38,6 +38,12 @@ namespace UniversityMIS.Controllers
             }
             return BadRequest();
         }
+        public JsonResult GetSubjectsBySemesterId(int id)
+        {
+            var subjects = _context.Subjects.Where(s => s.SemesterId == id).ToList();
+            return Json(new {data = subjects});
+
+        }
         [HttpGet]
         public IActionResult Edit(int id)
         {
